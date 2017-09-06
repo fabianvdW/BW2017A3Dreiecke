@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Strecke> strecken= leseStreckenEin("dreiecke1.txt");
+        ArrayList<Strecke> strecken= leseStreckenEin("dreiecke2.txt");
         for (int i = 0; i < strecken.size(); i++) {
             Strecke strecke =  strecken.get(i);
             setFunctionParameters(strecke);
@@ -23,7 +23,7 @@ public class Main {
             }*/
 
         }
-        System.out.println(schnittpunkte.size());
+        System.out.println(strecken.size());
         GUI.startBaum(strecken,schnittpunkte);
 
     }
