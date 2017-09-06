@@ -11,7 +11,60 @@ public class Strecke {
     }
     @Override
     public String toString(){
-        String s="Strecke: "+"Punkt1: ("+p1.x+","+p1.y+")\n Punkt2: ("+p2.x+","+p2.y+")";
+        String s="Strecke:\n "+"Punkt1: ("+p1.x+","+p1.y+")\n Punkt2: ("+p2.x+","+p2.y+")";
+        s+="\n f(x)="+m+"*x+"+b;
+        s+="\n Definitionsbereich: "+ defbereich[0]+","+defbereich[1];
         return s;
+    }
+    public Punkt schneidet(Strecke s2){
+        System.out.println("__________________________________________________\n\n");
+        if(this.m==s2.m) {
+            //System.out.println("HILFE");
+            return null;
+        }
+        System.out.println(this.toString());
+        System.out.println(s2.toString());
+        if(this.m==Double.POSITIVE_INFINITY|| s2.m==Double.POSITIVE_INFINITY){
+            if(this.m==Double.POSITIVE_INFINITY){
+
+                double yschnitt= s2.m*this.p1.x+s2.b;
+                double xschnitt=(yschnitt-s2.b)/(s2.m);;
+                if(s2.m==0){
+                    xschnitt=s2.defbereich[0];
+                }
+                System.out.println("Xschnitt: "+xschnitt);
+                System.out.println("yschnitt: "+yschnitt);
+                if(s2.imDefBereich(xschnitt)){
+                   System.out.println("Im Def-Bereich");
+                    return new Punkt(xschnitt,yschnitt);
+                }
+            }else{
+                double yschnitt= this.m*s2.p1.x+this.b;
+                double xschnitt=(yschnitt-this.b)/(this.m);
+                if(this.m==0){
+                    xschnitt=this.defbereich[0];
+                }
+                System.out.println("xschnitt: "+xschnitt);
+                System.out.println("yschnitt: "+yschnitt);
+                if(imDefBereich(xschnitt)){
+                    System.out.println("Im Def-Bereich");
+                    return new Punkt(xschnitt,yschnitt);
+                }
+            }
+        }else{
+            double xschnitt= (this.b-s2.b)/(s2.m-this.m);
+            System.out.println("Xschnitt: "+xschnitt);
+            double yschnitt=this.m*xschnitt+this.b;
+            System.out.println("Yscnintt: "+yschnitt);
+            if(imDefBereich(xschnitt)){
+               System.out.println("Im Def-Bereich.");
+                return new Punkt(xschnitt,yschnitt);
+            }
+
+        }
+        return null;
+    }
+    public boolean imDefBereich(double test){
+        return test>=defbereich[0]&& test<=defbereich[1];
     }
 }
