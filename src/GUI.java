@@ -15,7 +15,9 @@ public class  GUI extends JPanel {
     }
     @Override
     public void paintComponent(Graphics g) {
+        int k=1;
         for(Strecke s: strecken){
+            System.out.println(k++);
             g.drawLine((int)s.p1.x+400,(int)s.p1.y+400,(int)s.p2.x+400,(int)s.p2.y+400);
         }
         g.setColor(Color.RED);
