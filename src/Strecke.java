@@ -3,6 +3,9 @@ public class Strecke {
     Punkt p2;
     double m;
     double b;
+
+    // wegen Rundungen
+    double toleranz = 0.000003;
     double[] defbereich;
     double[] wertebereich;
 
@@ -94,11 +97,11 @@ public class Strecke {
     }
 
     public boolean imDefBereich(double test) {
-        return test >= defbereich[0] && test <= defbereich[1];
+        return test >= defbereich[0] - toleranz && test <= defbereich[1] + toleranz;
     }
 
     public boolean imWerteBereich(double test) {
-        return test >= wertebereich[0] && test <= wertebereich[1];
+        return test >= wertebereich[0] - toleranz && test <= wertebereich[1] + toleranz;
     }
 
     @Override
