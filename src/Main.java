@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Strecke> strecken = leseStreckenEin("dreiecke7.txt");
+        ArrayList<Strecke> strecken = leseStreckenEin("dreiecke6.txt");
         for (int i = 0; i < strecken.size(); i++) {
             Strecke strecke = strecken.get(i);
             setFunctionParameters(strecke);
