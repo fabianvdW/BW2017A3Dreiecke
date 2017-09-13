@@ -58,6 +58,7 @@ public class GUI extends JPanel {
         colors.add(new Color(255, 127, 0));
         int index = 0;
         for (Dreieck d : dreiecke) {
+            if (index == 15) index = 0;
             g.setColor(colors.get(index));
             g.drawLine((int) (d.p1.x + 800), (int) (d.p1.y + 400), (int) (d.p2.x + 800), (int) (d.p2.y + 400));
             g.drawLine((int) (d.p1.x + 800), (int) (d.p1.y + 400), (int) (d.p3.x + 800), (int) (d.p3.y + 400));
