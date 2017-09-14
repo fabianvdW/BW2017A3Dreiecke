@@ -30,7 +30,7 @@ public class GUI extends JPanel {
         for (Schnittpunkt s : schnittpunkte) {
             for (Double key : coords.keySet()) {
                 if (s.x == key && coords.get(key) == s.y) {
-                    System.out.println("WOWOWOW");
+                    //System.out.println("WOWOWOW"); //DEBUG
                     g.setColor(Color.GREEN);
                 }
             }

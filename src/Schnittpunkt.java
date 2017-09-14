@@ -5,10 +5,11 @@ public class Schnittpunkt {
     Strecke s2;
 
     public Schnittpunkt(double x, double y, Strecke s1, Strecke s2) {
-        //this.x=x;
-        //this.y=y;
-        this.x = Math.round(x * 1000) / 1000;
-        this.y = Math.round(y * 1000) / 1000;
+        this.x=x;
+        this.y=y;
+
+        //this.x = Math.round(x * 100) / 100.0;
+        //this.y = Math.round(y * 100) / 100.0;
         this.s1 = s1;
         this.s2 = s2;
     }
