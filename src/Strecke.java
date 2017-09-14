@@ -46,14 +46,13 @@ public class Strecke {
     }
 
     public Punkt schneidet(Strecke s2) {
-        System.out.println("__________________________________________________\n\n");
+        //System.out.println("__________________________________________________\n\n");//DEBUG
         if (this.m == s2.m) {
-            //System.out.println("HILFE");
-            System.out.println("Steigung gleich");
+            //System.out.println("Steigung gleich");//DEBUG
             return null;
         }
-        System.out.println(this.toString());
-        System.out.println(s2.toString());
+        //System.out.println(this.toString());//DEBUG
+        //System.out.println(s2.toString());//DEBUG
         if (this.m == Double.POSITIVE_INFINITY || s2.m == Double.POSITIVE_INFINITY) {
             if (this.m == Double.POSITIVE_INFINITY) {
 
@@ -62,10 +61,10 @@ public class Strecke {
                 if (s2.m == 0) {
                     xschnitt = this.defbereich[0];
                 }
-                System.out.println("Xschnitt: " + xschnitt);
-                System.out.println("yschnitt: " + yschnitt);
+                //System.out.println("Xschnitt: " + xschnitt);//DEBUG
+                //System.out.println("yschnitt: " + yschnitt);//DEBUG
                 if (imDefBereich(xschnitt) && s2.imDefBereich(xschnitt) && imWerteBereich(yschnitt) && s2.imWerteBereich(yschnitt)) {
-                    System.out.println("Im Def-Bereich");
+                    //System.out.println("Im Def-Bereich");//DEBUG
                     return new Punkt(xschnitt, yschnitt);
                 }
             } else {
@@ -74,20 +73,20 @@ public class Strecke {
                 if (this.m == 0) {
                     xschnitt = s2.defbereich[0];
                 }
-                System.out.println("xschnitt: " + xschnitt);
-                System.out.println("yschnitt: " + yschnitt);
+                //System.out.println("xschnitt: " + xschnitt);//DEBUG
+                //System.out.println("yschnitt: " + yschnitt);//DEBUG
                 if (imDefBereich(xschnitt) && s2.imDefBereich(xschnitt) && imWerteBereich(yschnitt) && s2.imWerteBereich(yschnitt)) {
-                    System.out.println("Im Def-Bereich");
+                    //System.out.println("Im Def-Bereich");//DEBUG
                     return new Punkt(xschnitt, yschnitt);
                 }
             }
         } else {
             double xschnitt = (this.b - s2.b) / (s2.m - this.m);
-            System.out.println("Xschnitt: " + xschnitt);
+            //System.out.println("Xschnitt: " + xschnitt);//DEBUG
             double yschnitt = this.m * xschnitt + this.b;
-            System.out.println("Yscnintt: " + yschnitt);
+            //System.out.println("Yscnintt: " + yschnitt);//DEBUG
             if (imDefBereich(xschnitt) && s2.imDefBereich(xschnitt) && imWerteBereich(yschnitt) && s2.imWerteBereich(yschnitt)) {
-                System.out.println("Im Def-Bereich.");
+                //System.out.println("Im Def-Bereich.");//DEBUG
                 return new Punkt(xschnitt, yschnitt);
             }
 

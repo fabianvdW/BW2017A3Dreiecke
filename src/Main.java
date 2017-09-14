@@ -1,39 +1,50 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.lang.reflect.Array;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Strecke> strecken = leseStreckenEin("dreiecke6.txt");
+        String datei="dreiecke6";
+        ArrayList<Strecke> strecken = leseStreckenEin(datei+".txt");
         for (int i = 0; i < strecken.size(); i++) {
             Strecke strecke = strecken.get(i);
             setFunctionParameters(strecke);
             //System.out.println(strecke.toString());//DEBUG
 
         }
-        System.out.println("Anzahl Strecken: " + strecken.size());
+        //System.out.println("Anzahl Strecken: " + strecken.size());//DEBUG
         ArrayList<Schnittpunkt> schnittpunkte = berechneSchnittpunkte(strecken);
-        System.out.println("Anzahl Schnittpunkte: " + schnittpunkte.size());
+        //System.out.println("Anzahl Schnittpunkte: " + schnittpunkte.size());//DEBUG
         for (Schnittpunkt s : schnittpunkte) {
             if ((s.y + "").equals("NaN")) {
-                System.out.println(s.s1.toString());
-                System.out.println(s.s2.toString());
+                //System.out.println(s.s1.toString());//DEBUG
+                //System.out.println(s.s2.toString());//DEBUG
             }
-            /*if(s.x>100 && s.y>10) {
-                System.out.println(s.toString());
-            }*/
 
         }
         ArrayList<Dreieck> dreiecke = berechneDreiecke(schnittpunkte);
         System.out.println("Anzahl Dreiecke: " + dreiecke.size());
         for (Dreieck d : dreiecke) {
-            System.out.println("(" + d.p1.x + "|" + d.p1.y + ")-(" + d.p2.x + "|" + d.p2.y + ")-(" + d.p3.x + "|" + d.p3.y + ")");
+            System.out.println(d.toString());
         }
+        schreibeLoesungsDatei(datei, dreiecke);
         GUI.startBaum(strecken, schnittpunkte, dreiecke);
 
     }
-
+    public static void schreibeLoesungsDatei(String datei, ArrayList<Dreieck> dreiecke){
+        try{
+            PrintWriter writer = new PrintWriter(datei+"-loes.txt", "UTF-8");
+            writer.println(dreiecke.size());
+            for(Dreieck d: dreiecke){
+                writer.println(d.toString());
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public static boolean isValidesDreieck(Schnittpunkt s1, Schnittpunkt s2, Schnittpunkt s3) {
         //Strecke die s1 mit s2 gemeinsam hat
         Strecke s1s2 = null;
@@ -70,13 +81,12 @@ public class Main {
         double a = s1s2.getLength();
         double b = s1s3.getLength();
         double c = s2s3.getLength();
-        System.out.println("A: " + a + " B: " + b + " C: " + c);
+        //System.out.println("A: " + a + " B: " + b + " C: " + c); //DEBUG
         double winkela = Math.acos((b * b + c * c - a * a) / (2 * b * c)) * (180 / Math.PI);
         double winkelb = Math.acos((a * a + c * c - b * b) / (2 * a * c)) * (180 / Math.PI);
         double winkelc = Math.acos((b * b + a * a - c * c) / (2 * b * a)) * (180 / Math.PI);
-        System.out.println("Winkela: " + winkela + " Winkelb: " + winkelb + " WinkelC: " + winkelc);
-        System.out.println("IWS: " + (winkela + winkelb + winkelc));
-        //return winkela+winkelb+winkelc==180;
+        //System.out.println("Winkela: " + winkela + " Winkelb: " + winkelb + " WinkelC: " + winkelc);//DEBUG
+        //System.out.println("IWS: " + (winkela + winkelb + winkelc));//DEBUG
         return winkela + winkelb + winkelc >= 179.9 && winkela + winkelb + winkelc <= 180.1;
     }
 
